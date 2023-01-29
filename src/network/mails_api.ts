@@ -2,6 +2,9 @@ import { ConflictError, UnauthorizedError } from "../errors/http_errors";
 import { Mail } from "../models/mail";
 import { User } from "../models/user";
 
+const USER_API_URL = "https://message-mern-api.onrender.com";
+// const USER_API_URL = "http://localhost:3000";
+
 async function fetchData(input: RequestInfo, init?: RequestInit) {
     const response = await fetch(input, init);
     if (response.ok) {
@@ -19,52 +22,9 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
     }
 }
 
-// export async function getLoggedInUser(): Promise<User> {
-//     const response = await fetchData("/api/users", { method: "GET" });
-//     return response.json();
-// }
-
-// export interface SignUpCredentials {
-//     username: string,
-//     email: string,
-//     password: string,
-// }
-
-// export async function signUp(credentials: SignUpCredentials): Promise<User> {
-//     const response = await fetchData("/api/users/signup",
-//         {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify(credentials),
-//         });
-//     return response.json();
-// }
-
-// export interface LoginCredentials {
-//     username: string,
-//     password: string,
-// }
-
-// export async function login(credentials: LoginCredentials): Promise<User> {
-//     const response = await fetchData("/api/users/login",
-//         {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify(credentials),
-//         });
-//     return response.json();
-// }
-
-// export async function logout() {
-//     await fetchData("/api/users/logout", { method: "POST" });
-// }
-
 export async function fetchMails(): Promise<Mail[]> {
-    const response = await fetchData("/api/mails", { method: "GET" });
+
+    const response = await fetchData(`${USER_API_URL}/api/mails`, { method: "GET" });
     return response.json();
 }
 
@@ -75,7 +35,7 @@ export interface MailInput {
 }
 
 export async function createMail(note: MailInput): Promise<Mail> {
-    const response = await fetchData("/api/mails",
+    const response = await fetchData(`${USER_API_URL}/api/mails`,
         {
             method: "POST",
             headers: {
@@ -86,18 +46,3 @@ export async function createMail(note: MailInput): Promise<Mail> {
     return response.json();
 }
 
-// export async function updateNote(noteId: string, note: NoteInput): Promise<Mail> {
-//     const response = await fetchData("/api/notes/" + noteId,
-//         {
-//             method: "PATCH",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify(note),
-//         });
-//     return response.json();
-// }
-
-// export async function deleteNote(noteId: string) {
-//     await fetchData("/api/notes/" + noteId, { method: "DELETE" });
-// }
