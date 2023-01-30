@@ -7,10 +7,10 @@ import TextInputField from "./form/TextInputField";
 
 interface NewMailDialogProps {
     onDismiss: () => void,
-    onNoteSaved: (note: Mail) => void,
+    onMailSaved: (note: Mail) => void,
 }
 
-const NewMailDialog = ({ onDismiss, onNoteSaved }: NewMailDialogProps) => {
+const NewMailDialog = ({ onDismiss, onMailSaved }: NewMailDialogProps) => {
 
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<MailInput>();
 
@@ -19,7 +19,7 @@ const NewMailDialog = ({ onDismiss, onNoteSaved }: NewMailDialogProps) => {
             let mailResponse: Mail;
                 mailResponse = await MailsApi.createMail(input);
             
-            onNoteSaved(mailResponse);
+            onMailSaved(mailResponse);
         } catch (error) {
             console.error(error);
             alert(error);
