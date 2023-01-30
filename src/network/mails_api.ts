@@ -34,14 +34,14 @@ export interface MailInput {
     text?: string,
 }
 
-export async function createMail(note: MailInput): Promise<Mail> {
+export async function createMail(mail: MailInput): Promise<Mail> {
     const response = await fetchData(`${USER_API_URL}/api/mails`,
         {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(note),
+            body: JSON.stringify(mail),
         });
     return response.json();
 }

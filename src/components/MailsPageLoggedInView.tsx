@@ -92,7 +92,7 @@ const MailsPageLoggedInView = ({ loggedInUser }: MailsPageProps) => {
             {showMailDialog &&
                 <NewMessageDialog
                     onDismiss={() => setShowMailDialog(false)}
-                    onNoteSaved={(newMail) => {
+                    onMailSaved={(newMail) => {
                         setMails([...mails, newMail]);
                         setShowMailDialog(false);
                     }}

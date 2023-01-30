@@ -8,10 +8,10 @@ import TextInputField from "./form/TextInputField";
 interface NewMailDialogProps {
     // noteToEdit?: Note,
     onDismiss: () => void,
-    onNoteSaved: (note: Mail) => void,
+    onMailSaved: (mail: Mail) => void,
 }
 
-const NewMailDialog = ({ onDismiss, onNoteSaved }: NewMailDialogProps) => {
+const NewMailDialog = ({ onDismiss, onMailSaved }: NewMailDialogProps) => {
 
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<MailInput>({
         // defaultValues: {
@@ -29,7 +29,7 @@ const NewMailDialog = ({ onDismiss, onNoteSaved }: NewMailDialogProps) => {
             // } else {
                 mailResponse = await MailsApi.createMail(input);
             // }
-            onNoteSaved(mailResponse);
+            onMailSaved(mailResponse);
         } catch (error) {
             console.error(error);
             alert(error);
