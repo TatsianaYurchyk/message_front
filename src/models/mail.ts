@@ -1,9 +1,9 @@
 export interface Mail {
     _id: string,
-    receiver:string,
     userId:string,
+    receiver:string,
     title: string,
     text?: string,
     createdAt: string,
-    updatedAt: string,
+    // updatedAt: string,
 }

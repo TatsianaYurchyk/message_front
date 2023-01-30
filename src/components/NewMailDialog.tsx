@@ -13,22 +13,19 @@ interface NewMailDialogProps {
 
 const NewMailDialog = ({ onDismiss, onMailSaved }: NewMailDialogProps) => {
 
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<MailInput>({
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<MailInput>(
         // defaultValues: {
-        //     receiver: noteToEdit?.receiver || "",
-        //     title: noteToEdit?.title || "",
-        //     text: noteToEdit?.text || "",
+        //     receiver:"",
+        //     title:"",
+        //     text:"",
         // }
-    });
+    );
 
-    async function onSubmit(input: MailInput) {
+    async function onSubmit(mail: MailInput) {
         try {
-            let mailResponse: Mail;
-            // if (noteToEdit) {
-            //     noteResponse = await NotesApi.updateNote(noteToEdit._id, input);
-            // } else {
-                mailResponse = await MailsApi.createMail(input);
-            // }
+             
+            const mailResponse:Mail = await MailsApi.createMail(mail);
+            
             onMailSaved(mailResponse);
         } catch (error) {
             console.error(error);
@@ -53,7 +50,7 @@ const NewMailDialog = ({ onDismiss, onMailSaved }: NewMailDialogProps) => {
                         placeholder="Receiver"
                         register={register}
                         registerOptions={{ required: "Required" }}
-                        // error={errors.title}
+                        error={errors.receiver}
                     />
                     <TextInputField
                         name="title"
