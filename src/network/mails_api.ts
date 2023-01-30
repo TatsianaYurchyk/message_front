@@ -35,7 +35,7 @@ export interface MailInput {
 }
 
 export async function createMail(mail: MailInput): Promise<Mail> {
-    const response = await fetchData(`${USER_API_URL}/api/mails`,
+    const response = await fetchData(`${USER_API_URL}/api/mails/create`,
         {
             method: "POST",
             headers: {
