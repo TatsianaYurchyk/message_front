@@ -6,27 +6,20 @@ import * as MailsApi from "../network/mails_api";
 import TextInputField from "./form/TextInputField";
 
 interface NewMailDialogProps {
-    // noteToEdit?: Note,
     onDismiss: () => void,
-    onMailSaved: (mail: Mail) => void,
+    onNoteSaved: (note: Mail) => void,
 }
 
-const NewMailDialog = ({ onDismiss, onMailSaved }: NewMailDialogProps) => {
+const NewMailDialog = ({ onDismiss, onNoteSaved }: NewMailDialogProps) => {
 
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<MailInput>(
-        // defaultValues: {
-        //     receiver:"",
-        //     title:"",
-        //     text:"",
-        // }
-    );
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<MailInput>();
 
-    async function onSubmit(mail: MailInput) {
+    async function onSubmit(input: MailInput) {
         try {
-             
-            const mailResponse:Mail = await MailsApi.createMail(mail);
+            let mailResponse: Mail;
+                mailResponse = await MailsApi.createMail(input);
             
-            onMailSaved(mailResponse);
+            onNoteSaved(mailResponse);
         } catch (error) {
             console.error(error);
             alert(error);
@@ -50,7 +43,7 @@ const NewMailDialog = ({ onDismiss, onMailSaved }: NewMailDialogProps) => {
                         placeholder="Receiver"
                         register={register}
                         registerOptions={{ required: "Required" }}
-                        error={errors.receiver}
+                        // error={errors.title}
                     />
                     <TextInputField
                         name="title"
