@@ -28,6 +28,7 @@ const MailsPageLoggedInView = ({ loggedInUser }: MailsPageProps) => {
                 setShowMailsLoadingError(false);
                 setMailsLoading(true);
                 const mails = await MailsApi.fetchMails();
+                mails.reverse();
                 setMails(mails);
             } catch (error) {
                 console.error(error);
@@ -91,6 +92,7 @@ const MailsPageLoggedInView = ({ loggedInUser }: MailsPageProps) => {
             }
             {showMailDialog &&
                 <NewMessageDialog
+                loggedInUser={loggedInUser}
                     onDismiss={() => setShowMailDialog(false)}
                     onMailSaved={(newMail) => {
                         setMails([...mails, newMail]);

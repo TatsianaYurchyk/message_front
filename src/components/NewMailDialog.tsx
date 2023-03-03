@@ -1,6 +1,7 @@
 import { Button, Form, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Mail } from "../models/mail";
+import { User } from "../models/user";
 import { MailInput } from "../network/mails_api";
 import * as MailsApi from "../network/mails_api";
 import TextInputField from "./form/TextInputField";
@@ -8,17 +9,18 @@ import TextInputField from "./form/TextInputField";
 interface NewMailDialogProps {
     onDismiss: () => void,
     onMailSaved: (note: Mail) => void,
+    loggedInUser: User,
 }
 
-const NewMailDialog = ({ onDismiss, onMailSaved }: NewMailDialogProps) => {
+const NewMailDialog = ({ onDismiss, onMailSaved,  loggedInUser }: NewMailDialogProps) => {
 
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<MailInput>();
 
     async function onSubmit(input: MailInput) {
         try {
             let mailResponse: Mail;
-                mailResponse = await MailsApi.createMail(input);
-            
+            input.userId=loggedInUser._id;
+            mailResponse = await MailsApi.createMail(input);
             onMailSaved(mailResponse);
         } catch (error) {
             console.error(error);

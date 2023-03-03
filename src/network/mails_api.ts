@@ -32,6 +32,7 @@ export interface MailInput {
     receiver: string,
     title: string,
     text?: string,
+    userId: string,
 }
 
 export async function createMail(mail: MailInput): Promise<Mail> {

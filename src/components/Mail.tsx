@@ -42,15 +42,8 @@ const Mail = ({ mail,className }: MailProps) => {
 		loadUsers();
 	}, []);
 
-    // let createdUpdatedText: string;
-    // if (updatedAt > createdAt) {
-    //     createdUpdatedText = "Updated: " + formatDate(updatedAt);
-    // } else {
-    //     createdUpdatedText = "Created: " + formatDate(createdAt);
-    // }
     const sender =users.map(user=> user._id==userId?user.username:"");
     
-
     return (
         <Card
             className={`${styles.noteCard} ${className}`}
@@ -59,13 +52,7 @@ const Mail = ({ mail,className }: MailProps) => {
                 
                 <Card.Title onClick={()=>setDetails(prev=> !prev)} title="click to see the text">
                    title:  {title}
-                    {/* <MdDelete
-                        className="text-muted ms-auto"
-                        onClick={(e) => {
-                            onDeleteNoteClicked(note);
-                            e.stopPropagation();
-                        }}
-                    /> */}
+                    
                 </Card.Title>
                 <Card.Text className={styles.cardText}>
                     to: {receiver}

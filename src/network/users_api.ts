@@ -71,30 +71,3 @@ export async function fetchUsers(): Promise<User[]> {
     return response.json();
 }
 
-// export async function deleteUser(userId: string) {
-//     await fetchData(`${USER_API_URL}/api/users/` + userId, { method: "DELETE" });
-// }
-
-// export async function blockStatus(userId: string): Promise<User> {
-//     const response = await fetchData(`${USER_API_URL}/api/users/` + userId,
-//         {
-//             method: "PATCH",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify({"status":"blocked"}),
-//         });
-//     return response.json();
-// }
-
-// export async function activateStatus(userId: string): Promise<User> {
-//     const response = await fetchData(`${USER_API_URL}/api/users/` + userId,
-//         {
-//             method: "PATCH",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify({"status":"active"}),
-//         });
-//     return response.json();
-// }
