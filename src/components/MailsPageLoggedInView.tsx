@@ -40,6 +40,21 @@ const MailsPageLoggedInView = ({ loggedInUser }: MailsPageProps) => {
         loadMails();
     }, []);
 
+    async function loadMails() {
+        try {
+            setShowMailsLoadingError(false);
+            setMailsLoading(true);
+            const mails = await MailsApi.fetchMails();
+            mails.reverse();
+            setMails(mails);
+        } catch (error) {
+            console.error(error);
+            setShowMailsLoadingError(true);
+        } finally {
+            setMailsLoading(false);
+        }
+    }
+
     const mailsGrid =
         <Row xs={1} md={2} xl={3} className={`g-4 ${styles.notesGrid}`}>
             {/* {notes.map(note => ( */}
@@ -52,6 +67,15 @@ const MailsPageLoggedInView = ({ loggedInUser }: MailsPageProps) => {
                 </Col>
             ))}
         </Row>
+
+useEffect(() => {
+    const interval = setInterval(() => {
+      loadMails();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+
         // const update= setInterval(() => {
         //     window.location.reload()
         //   }, 10000)
