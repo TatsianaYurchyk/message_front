@@ -3,15 +3,12 @@ import { Card } from "react-bootstrap";
 import { Mail as MailModel } from "../models/mail";
 import { User as UserModel } from "../models/user";
 import { formatDate } from "../utils/formatDate";
-// import { MdDelete } from "react-icons/md";
 import { useEffect, useState } from 'react';
 import { User } from "../models/user";
 import * as UsersApi from "../network/users_api";
 
 interface MailProps {
     mail: MailModel,
-    // onNoteClicked: (note: MailModel) => void,
-    // onDeleteNoteClicked: (note: MailModel) => void,
     className?: string,
     
 }
