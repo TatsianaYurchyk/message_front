@@ -7,7 +7,8 @@ import * as MailsApi from "../network/mails_api";
 import TextInputField from "./form/TextInputField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import * as UsersApi from "../network/users_api";
 
 interface NewMailDialogProps {
 	onDismiss: () => void;
@@ -22,6 +23,21 @@ const NewMailDialog = ({
 }: NewMailDialogProps) => {
 	const [value, setValue] = useState<string | null>("");
 	const [inputValue, setInputValue] = useState<string>("");
+    const [receivers, setReceivers] = useState<string[]>([]);
+
+	useEffect(() => {
+		async function loadUsers() {
+			try {
+				const users = await UsersApi.fetchUsers();
+                const newReceivers=users.map(user=>user.username)
+				setReceivers(newReceivers);
+               
+			} catch (error) {
+				console.error(error);
+			}
+		}
+		loadUsers();
+	}, []);
 
 	const {
 		register,
@@ -42,17 +58,6 @@ const NewMailDialog = ({
 		}
 	}
 
-	const top10Receivers = [
-		"User",
-		"Tanya",
-		"Peter",
-		"Max",
-		"Anna",
-		"Alex",
-		"Paula",
-		"Tina",
-		"Michael",
-	];
 
 	return (
 		<Modal show onHide={onDismiss}>
@@ -66,7 +71,7 @@ const NewMailDialog = ({
                     <Autocomplete
 						disablePortal
 						id="combo-box-demo"
-						options={top10Receivers}
+						options={receivers}
 						sx={{ width: 300 }}
 						freeSolo
 						isOptionEqualToValue={(option, value) =>

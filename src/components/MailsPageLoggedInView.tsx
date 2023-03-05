@@ -57,7 +57,6 @@ const MailsPageLoggedInView = ({ loggedInUser }: MailsPageProps) => {
 
     const mailsGrid =
         <Row xs={1} md={2} xl={3} className={`g-4 ${styles.notesGrid}`}>
-            {/* {notes.map(note => ( */}
             {mails.filter((mail)=>mail.receiver==loggedInUser.username).map(mail => (
                 <Col key={mail._id}>
                     <Mail
@@ -75,27 +74,6 @@ useEffect(() => {
     return () => clearInterval(interval);
   }, []);
 
-
-        // const update= setInterval(() => {
-        //     window.location.reload()
-        //   }, 10000)
-
-        //   const intervalRef:any = useRef()
-
-        //   const update2 = () => {
-        //     intervalRef.current = setInterval(() => {
-        //         window.location.reload()
-        //     }, 5000);
-        //   };
-          
-        //   const resetUpdate = () => {
-        //     clearInterval(intervalRef.current);
-        //     intervalRef.current = null;
-        //   };
-
-// showMailDialog? clearInterval(update):update;
-// !showMailDialog? update:setTimeout(() => { clearInterval(update); });
-
     return (
         <>
             <Button
@@ -108,6 +86,7 @@ useEffect(() => {
             {showMailsLoadingError && <p>Something went wrong. Please refresh the page.</p>}
             {!mailsLoading && !showMailsLoadingError &&
                 <>
+                <h2>Hello {loggedInUser.username}! </h2>
                     {mails.length > 0
                         ? <> <p>Your incoming messages:</p> {mailsGrid} </> 
                         : <p>You don't have any messages yet</p>
