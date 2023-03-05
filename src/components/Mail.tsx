@@ -1,5 +1,4 @@
-import styles from "../styles/Note.module.css";
-import styleUtils from "../styles/utils.module.css";
+import styles from "../styles/Mail.module.css";
 import { Card } from "react-bootstrap";
 import { Mail as MailModel } from "../models/mail";
 import { User as UserModel } from "../models/user";
@@ -46,7 +45,7 @@ const Mail = ({ mail,className }: MailProps) => {
     
     return (
         <Card
-            className={`${styles.noteCard} ${className}`}
+            className={`${styles.mailCard} ${className}`}
             >
             <Card.Body className={styles.cardBody}>
                 

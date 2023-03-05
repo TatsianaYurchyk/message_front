@@ -4,7 +4,7 @@ import { FaPlus } from "react-icons/fa";
 import { Mail as MailModel } from '../models/mail';
 import * as MailsApi from "../network/mails_api";
 import * as UsersApi from "../network/users_api";
-import styles from "../styles/NotesPage.module.css";
+import styles from "../styles/MailsPage.module.css";
 import styleUtils from "../styles/utils.module.css";
 import NewMessageDialog from "./NewMailDialog";
 import Mail from './Mail';
@@ -56,12 +56,12 @@ const MailsPageLoggedInView = ({ loggedInUser }: MailsPageProps) => {
     }
 
     const mailsGrid =
-        <Row xs={1} md={2} xl={3} className={`g-4 ${styles.notesGrid}`}>
+        <Row xs={1} md={2} xl={3} className={`g-4 ${styles.mailsGrid}`}>
             {mails.filter((mail)=>mail.receiver==loggedInUser.username).map(mail => (
                 <Col key={mail._id}>
                     <Mail
                         mail={mail}
-                        className={styles.note}
+                        className={styles.mail}
                     />
                 </Col>
             ))}

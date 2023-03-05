@@ -29,7 +29,8 @@ const NewMailDialog = ({
 		async function loadUsers() {
 			try {
 				const users = await UsersApi.fetchUsers();
-                const newReceivers=users.map(user=>user.username)
+                const newReceivers=users.map(user=>user.username);
+                newReceivers.sort();
 				setReceivers(newReceivers);
                
 			} catch (error) {
