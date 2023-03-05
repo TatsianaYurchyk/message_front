@@ -62,7 +62,8 @@ const NewMailDialog = ({
 
 			<Modal.Body>
 				<Form id="addEditNoteForm" onSubmit={handleSubmit(onSubmit)}>
-					<Autocomplete
+                <Form.Label>Receiver</Form.Label>
+                    <Autocomplete
 						disablePortal
 						id="combo-box-demo"
 						options={top10Receivers}
