@@ -80,7 +80,7 @@ const NewMailDialog = ({
 							setInputValue(newInputValue);
 						}}
 						renderInput={(params) => (
-							<TextField {...params} label="Movie" />
+							<TextField {...params} label="Receiver" />
 						)}
 					/>
 
